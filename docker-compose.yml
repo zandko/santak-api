@@ -1,0 +1,72 @@
+version: '3'
+
+services:
+  santak_redis:
+    image: redis:3
+    container_name: santak_redis
+    restart: always
+    hostname: redis
+    command: redis-server /usr/local/etc/redis/redis.conf --requirepass 123456  --appendonly yes
+    volumes:
+      - /root/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  santak_nginx:
+    image: nginx:stable-alpine
+    container_name: santak_nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /root/nginx/conf.d:/etc/nginx/conf.d
+      - /root/nginx/logs:/var/log/nginx
+    depends_on:
+      - nodejs
+    networks:
+      - app-network
+
+  santak_mysql:
+    image: mysql:5.7
+    container_name: santak_mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=lovelp   #创建test用户
+      - MYSQL_PASSWORD=mm123321  #设置test用户的密码
+      - MYSQL_DATABASE=santak
+      - TZ=Asia/Shanghai # 设置时区
+    volumes:
+      - /root/mysql:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - app-network
+
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: nodejs
+    restart: always
+    depends_on:
+      - santak_redis
+      - santak_mysql
+    links:
+      - santak_redis:santak_redis
+      - santak_mysql:santak_mysql
+    networks:
+      - app-network
+
+volumes:
+  certbot-etc:
+  certbot-var:
+
+networks:
+  app-network:
+    driver: bridge
