@@ -34,16 +34,15 @@ class CardsController extends Controller {
   }
 
   /**
-  * @summary  添加卡片
-  * @description
-  * @router post /v1/admin/cards
-  * @request header string authorization token
-  * @request body createCardRequest *body
-  */
+ * @summary 添加卡片
+ * @description
+ * @router post /v1/admin/cards
+ * @request header string authorization token
+ * @request body createCardRequest *body
+ */
   async create() {
     const { ctx } = this;
-    const { title, picture, probability } = ctx.request.body;
-    const card = await ctx.service.card.create({ title, picture, probability });
+    const card = await ctx.service.card.create(ctx.request.body);
     ctx.helper.success(ctx, card, ctx.CREATED_CODE);
   }
 
@@ -58,8 +57,7 @@ class CardsController extends Controller {
   async update() {
     const { ctx } = this;
     const id = ctx.params.id;
-    const { title, picture, probability } = ctx.request.body;
-    await ctx.service.card.update({ title, picture, probability }, id);
+    await ctx.service.card.update(ctx.request.body, id);
     ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
   }
 
