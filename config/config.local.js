@@ -34,14 +34,14 @@ exports.sequelize = {
 };
 
 // redis
-// exports.redis = {
-//   client: {
-//     prot: 6379,
-//     host: '127.0.0.1',
-//     password: '',
-//     db: 0,
-//   },
-// };
+exports.redis = {
+  client: {
+    port: 6379, // Redis port
+    host: '47.100.194.4', // Redis host
+    password: '123456',
+    db: 0,
+  },
+};
 
 exports.wxconfig = {
   APP_ID: 'wx7425acfdb271ef9a',

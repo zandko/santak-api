@@ -2,12 +2,6 @@
 const _ = require('lodash');
 const fecha = require('fecha');
 
-// TODO Redis好像无法对消息持久化存储，这个到时候再看下怎么改进
-const handlers = {}; // 任务处理器map
-const events = {}; // 任务类型map
-const tasks = {}; // 任务列表
-const delayEventKeyPrefix = 'delay_event_'; // 定时任务key前缀
-
 const TRANSITION = Symbol('Application#transition');
 
 module.exports = {
@@ -30,6 +24,22 @@ module.exports = {
   },
   formatToDayTime(date = new Date()) {
     return fecha.format(date, 'YYYY-MM-DD HH:mm:ss');
+  },
+
+  async getRand(arr) {
+    const result = 0;
+    let sum = 0;
+    arr.forEach(val => {
+      sum += val.probability;
+    });
+    for (const index in arr) {
+      const rand = Math.round(Math.random() * (sum - 1) + 1);
+      if (rand <= arr[index].probability) {
+        return arr[index];
+      }
+      sum -= arr[index].probability;
+    }
+    return result;
   },
 
   // 获取当前时间相差 count 天的时间
@@ -74,60 +84,5 @@ module.exports = {
       error.status = 422;
       throw error;
     }
-  },
-
-  // 任务处理
-  registerTaskHandler(type, handler) {
-    if (!type) {
-      throw new Error('type不能为空');
-    }
-    if (!_.isFunction(handler)) {
-      throw new Error('handler类型非function');
-    }
-    handlers[type] = handler;
-    events[type] = true;
-  },
-  // 创建延迟任务
-  addDelayTask(type, id, body = {}, delay = 3600) {
-    const key = `${delayEventKeyPrefix}${type}_${id}`;
-    const taskKey = `${type}_${id}`;
-
-    this.redis.get('default').setex(key, delay, 'delay_task', err => {
-      if (err) {
-        return console.log('添加延迟任务失败：', err);
-      }
-      console.log('添加延迟任务成功');
-      tasks[taskKey] = body;
-    });
-  },
-  // 订阅和处理延迟任务
-  initDelayTask() {
-    // 订阅
-    this.redis.get('subscribe').psubscribe('__keyevent@0__:expired');
-
-    // 处理
-    this.redis.get('subscribe').on('pmessage', (pattern, channel, message) => {
-      console.log(message);
-      // 匹配key
-      const result = message.match(new RegExp(`^${delayEventKeyPrefix}(${this._.keys(events).join('|')})_(\\S+)$`));
-
-      if (result) {
-        const type = result[1];
-        const id = result[2];
-        const handler = handlers[type];
-
-        if (_.isFunction(handler)) {
-          const taskKey = `${type}_${id}`;
-          if (tasks[taskKey]) {
-            handler(id, tasks[taskKey]);
-            tasks[taskKey] = null;
-          } else {
-            console.log(`未找到延迟任务：type=${type}, id=${id}`);
-          }
-        } else {
-          console.log(`未找到任务处理器：type=${type}`);
-        }
-      }
-    });
   },
 };

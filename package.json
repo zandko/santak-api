@@ -17,6 +17,7 @@
     "fecha": "^3.0.3",
     "koa-json-error": "^3.1.2",
     "lodash": "^4.17.15",
+    "md5": "^2.2.1",
     "mysql2": "^2.0.0"
   },
   "devDependencies": {

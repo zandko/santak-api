@@ -1,3 +1,4 @@
+'use strict';
 /* indent size: 2 */
 
 module.exports = app => {
@@ -7,15 +8,15 @@ module.exports = app => {
     name: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      primaryKey: true
-    }
+      primaryKey: true,
+    },
   }, {
-    tableName: 'SequelizeMeta'
+    tableName: 'SequelizeMeta',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };

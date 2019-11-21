@@ -1,34 +1,31 @@
+'use strict';
 /* indent size: 2 */
 
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('cards', {
+  const Model = app.model.define('admin', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
-    title: {
+    username: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: false,
     },
-    picture: {
+    password: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: false,
     },
-    probability: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true
-    }
   }, {
-    tableName: 'cards'
+    tableName: 'admin',
   });
 
   Model.associate = function() {
 
-  }
+  };
 
   return Model;
 };

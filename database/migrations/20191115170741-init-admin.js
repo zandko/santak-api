@@ -2,13 +2,17 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('admins', {
-      id: Sequelize.INTEGER,
+    const { INTEGER, STRING } = Sequelize;
+    await queryInterface.createTable('admin', {
+      id: { type: INTEGER, primaryKey: true, autoIncrement: true },
+      username: { type: STRING, allowNull: false },
+      password: { type: STRING, allowNull: false },
+    }, {
+      comment: '管理员',
     });
     try {
-      await queryInterface.bulkInsert('admins', [{
+      await queryInterface.bulkInsert('admin', [{
         id: 1,
-        name: '管理员',
         username: 'admin', // 账号：admin
         password: '21232f297a57a5a743894a0e4a801fc3', // 密码：admin
       }]);
@@ -18,6 +22,6 @@ module.exports = {
   },
 
   down: async queryInterface => {
-    await queryInterface.dropTable('admins');
+    await queryInterface.dropTable('admin');
   },
 };

@@ -22,6 +22,10 @@ module.exports = appInfo => {
     'auth',
   ];
 
+  config.auth = {
+    match: '/v1/',
+  };
+
   config.error = {
     // 这里使用appInfo.env来判断环境，仅仅在非生产环境下打开堆栈信息，用于调试
     postFormat: (e, { stack, ...rest }) => (appInfo.env === 'prod' ? rest : { stack, ...rest }),
@@ -65,7 +69,7 @@ module.exports = appInfo => {
     securityDefinitions: { // 配置接口安全授权方式
       // apikey: {
       //   type: 'apiKey',
-      //   name: 'clientkey',
+      //   name: 'authorization',
       //   in: 'header',
       // },
       // oauth2: {

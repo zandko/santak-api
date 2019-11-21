@@ -1,9 +1,18 @@
 'use strict';
 
 const uuidv1 = require('uuid/v1');
+const md5 = require('md5');
+
 
 module.exports = {
   uuidv1,
+
+  /**
+   * 成功
+   * @param {context} ctx
+   * @param {object} data
+   * @param {number} code
+   */
   success(ctx, data, code) {
     // eslint-disable-next-line no-bitwise
     const timestamp = (0 | Date.now() / 1000).toString();
@@ -12,9 +21,15 @@ module.exports = {
       code,
       data,
     };
-    ctx.status = code || 200;
+    ctx.status = code || ctx.OK_CODE;
   },
 
+  /**
+   * 失败
+   * @param {context} ctx
+   * @param {number} code
+   * @param {string} message
+   */
   fail(ctx, code, message) {
     // eslint-disable-next-line no-bitwise
     const timestamp = (0 | Date.now() / 1000).toString();
@@ -22,14 +37,18 @@ module.exports = {
       timestamp,
       code,
       message,
-      data: {},
     };
     ctx.status = code;
   },
 
+  /**
+   * 找不到
+   * @param {context} ctx
+   * @param {string} msg
+   */
   notFound(ctx, msg) {
     msg = msg || 'not found';
-    ctx.throw(404, msg);
+    ctx.throw(ctx.NOT_FOUND_CODE, msg);
   },
 
   /**
@@ -45,4 +64,13 @@ module.exports = {
       return defaultRusult || {};
     }
   },
+
+  /**
+   * md5加密
+   * @param {string} str
+   */
+  async md5(str) {
+    return md5(str);
+  },
+
 };

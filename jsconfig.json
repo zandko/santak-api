@@ -1,5 +1,5 @@
 {
   "include": [
-    "**/*"
+    "**/*", "database/migrations/20191121015057-init-t_lottery_management/.js"
   ]
 }
