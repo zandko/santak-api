@@ -4,7 +4,7 @@
 cd /usr/src/node-app/egg-santak
 
 docker-compose stop || true;
-# docker-compose down || true;
+docker-compose down || true;
 
 docker-compose build .;
 
