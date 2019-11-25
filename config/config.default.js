@@ -59,7 +59,7 @@ module.exports = appInfo => {
   config.swaggerdoc = {
     dirScanner: './app/controller', // 配置自动扫描的控制器路径
     apiInfo: {
-      title: 'Santak测试', // 接口文档的标题
+      title: 'Santak', // 接口文档的标题
       description: 'Santak Api document.', // 接口文档描述
       version: '1.0.0', // 接口文档版本
     },
