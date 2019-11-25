@@ -39,7 +39,7 @@ class LotteryManagementDeploysController extends Controller {
  * @description
  * @router post /v1/admin/LotteryManagementDeploys
  * @request header string authorization token
- * @request body createPrizeRequest *body
+ * @request body createLotteryManagementDeployRequest *body
  */
   async create() {
     const { ctx } = this;
@@ -53,7 +53,7 @@ class LotteryManagementDeploysController extends Controller {
   * @router put /v1/admin/LotteryManagementDeploys/{id}
   * @request path integer id 配置id
   * @request header string authorization token
-  * @request body updatePrizeRequest *body
+  * @request body updateLotteryManagementDeployRequest *body
   */
   async update() {
     const { ctx } = this;

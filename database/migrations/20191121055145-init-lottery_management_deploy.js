@@ -55,6 +55,16 @@ module.exports = {
         allowNull: false,
         comment: '创建时间',
       },
+      updated_at: {
+        type: DATE,
+        allowNull: false,
+        comment: '更新时间',
+      },
+      deleted_at: {
+        type: DATE,
+        allowNull: false,
+        comment: '删除时间',
+      },
     }, {
       comment: '抽奖活动配置表',
     });
