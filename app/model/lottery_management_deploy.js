@@ -1,4 +1,3 @@
-'use strict';
 /* indent size: 2 */
 
 module.exports = app => {
@@ -9,51 +8,59 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     lottery_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: false
     },
     prize_list: {
       type: DataTypes.JSON,
-      allowNull: false,
+      allowNull: false
     },
     card_list: {
       type: DataTypes.JSON,
-      allowNull: false,
+      allowNull: false
     },
     prize_total_num: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: '0',
+      defaultValue: '0'
     },
     prize_num: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: '0',
+      defaultValue: '0'
     },
     win_num: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: '0',
+      defaultValue: '0'
     },
     status: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: '1',
+      defaultValue: '1'
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: false
     },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    deleted_at: {
+      type: DataTypes.DATE,
+      allowNull: true
+    }
   }, {
-    tableName: 'lottery_management_deploy',
+    tableName: 'lottery_management_deploy'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

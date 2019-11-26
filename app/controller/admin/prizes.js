@@ -27,7 +27,7 @@ class PrizesController extends Controller {
   */
   async show() {
     const { ctx } = this;
-    const id = ctx.params.id;
+    const { id } = ctx.params;
     const prize = await ctx.service.prize.show(id);
     if (!prize) return ctx.helper.notFound(ctx);
     ctx.helper.success(ctx, prize);
@@ -43,7 +43,7 @@ class PrizesController extends Controller {
  */
   async create() {
     const { ctx } = this;
-    const prize = await ctx.service.prize.create(ctx.request.body);
+    const prize = await ctx.service.prize.create(ctx.params);
     ctx.helper.success(ctx, prize, ctx.CREATED_CODE);
   }
 
@@ -57,8 +57,9 @@ class PrizesController extends Controller {
   */
   async update() {
     const { ctx } = this;
-    const id = ctx.params.id;
-    await ctx.service.prize.update(ctx.request.body, id);
+    const { id } = ctx.params;
+    const prize = await ctx.service.prize.update(ctx.params, id);
+    if (!prize) return ctx.helper.notFound(ctx);
     ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
   }
 
@@ -71,8 +72,9 @@ class PrizesController extends Controller {
   */
   async destroy() {
     const { ctx } = this;
-    const id = ctx.params.id;
-    await ctx.service.prize.destroy(id);
+    const { id } = ctx.params;
+    const prize = await ctx.service.prize.destroy(id);
+    if (!prize) return ctx.helper.notFound(ctx);
     ctx.helper.success(ctx, {}, ctx.NOT_FOUND_CODE);
   }
 }

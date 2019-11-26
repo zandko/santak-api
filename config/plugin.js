@@ -26,4 +26,8 @@ module.exports = {
     enable: true,
     package: 'egg-swagger-doc',
   },
+  // validatePlus: {
+  //   enable: true,
+  //   package: 'egg-validate-plus',
+  // },
 };

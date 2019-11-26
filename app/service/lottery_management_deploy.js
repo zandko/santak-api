@@ -3,34 +3,56 @@
 const Service = require('egg').Service;
 
 class LotteryManagementDeployService extends Service {
-  async index(obj) {
+  constructor(ctx) {
+    super(ctx);
+    this.database = this.ctx.model.LotteryManagementDeploy;
+  }
+  async index(query) {
     const { app } = this;
-    const cards = await app.model.LotteryManagementDeploy.findAll(obj);
-    return cards;
+    try {
+      return await this.database.findAll({
+        where: query,
+        order: app.getSortInfo(),
+      });
+    } catch (error) {
+      throw (error);
+    }
   }
 
   async show(id) {
-    const { app } = this;
-    const card = await app.model.LotteryManagementDeploy.findByPk(id);
-    return card;
+    try {
+      return await this.database.findByPk(id);
+    } catch (error) {
+      throw (error);
+    }
   }
 
   async create(data) {
-    const { app } = this;
-    const card = await app.model.LotteryManagementDeploy.create(data);
-    return card;
+    try {
+      return await this.database.create(data);
+    } catch (error) {
+      throw (error);
+    }
   }
 
   async update(data, id) {
-    const { app } = this;
-    const card = await app.model.LotteryManagementDeploy.findByPk(id);
-    await card.update(data);
+    try {
+      const lotteryManagementDeploy = await this.database.findByPk(id);
+      if (!lotteryManagementDeploy) return lotteryManagementDeploy;
+      return await lotteryManagementDeploy.update(data);
+    } catch (error) {
+      throw (error);
+    }
   }
 
   async destroy(id) {
-    const { app } = this;
-    const card = await app.model.LotteryManagementDeploy.findByPk(id);
-    await card.destroy();
+    try {
+      const lotteryManagementDeploy = await this.database.findByPk(id);
+      if (!lotteryManagementDeploy) return lotteryManagementDeploy;
+      return await lotteryManagementDeploy.destroy();
+    } catch (error) {
+      throw (error);
+    }
   }
 }
 

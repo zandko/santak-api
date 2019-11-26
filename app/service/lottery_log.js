@@ -14,24 +14,6 @@ class LotteryLogService extends Service {
     const card = await app.model.LotteryLog.findByPk(id);
     return card;
   }
-
-  async create(data) {
-    const { app } = this;
-    const card = await app.model.LotteryLog.create(data);
-    return card;
-  }
-
-  async update(data, id) {
-    const { app } = this;
-    const card = await app.model.LotteryLog.findByPk(id);
-    await card.update(data);
-  }
-
-  async destroy(id) {
-    const { app } = this;
-    const card = await app.model.LotteryLog.findByPk(id);
-    await card.destroy();
-  }
 }
 
 module.exports = LotteryLogService;

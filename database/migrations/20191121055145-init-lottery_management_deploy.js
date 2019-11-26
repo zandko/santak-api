@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const { INTEGER, DATE, JSON } = Sequelize;
+    const { INTEGER, DATE, JSON, NOW } = Sequelize;
 
     await queryInterface.createTable('lottery_management_deploy', {
       id: {
@@ -48,21 +48,22 @@ module.exports = {
         type: INTEGER,
         allowNull: false,
         defaultValue: 1,
-        comment: '状态 1：正常  0：删除',
+        comment: '状态: 1正常,0删除',
       },
       created_at: {
         type: DATE,
         allowNull: false,
+        defaultValue: NOW,
         comment: '创建时间',
       },
       updated_at: {
         type: DATE,
         allowNull: false,
+        defaultValue: NOW,
         comment: '更新时间',
       },
       deleted_at: {
         type: DATE,
-        allowNull: false,
         comment: '删除时间',
       },
     }, {

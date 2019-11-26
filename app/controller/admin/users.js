@@ -32,47 +32,6 @@ class UsersController extends Controller {
     if (!user) return ctx.helper.notFound(ctx);
     ctx.helper.success(ctx, user);
   }
-
-
-  //   /**
-  //  * @summary 添加用户
-  //  * @description
-  //  * @router post /v1/admin/users
-  //  * @request header string authorization token
-  //  */
-  //   async create() {
-  //     const { ctx } = this;
-  //     const user = await ctx.service.user.create(ctx.request.body);
-  //     ctx.helper.success(ctx, user, ctx.CREATED_CODE);
-  //   }
-
-  //   /**
-  //   * @summary 修改用户
-  //   * @description
-  //   * @router put /v1/admin/users/{id}
-  //   * @request path integer id 用户id
-  //   * @request header string authorization token
-  //   */
-  //   async update() {
-  //     const { ctx } = this;
-  //     const id = ctx.params.id;
-  //     await ctx.service.user.update(ctx.request.body, id);
-  //     ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
-  //   }
-
-  // /**
-  // * @summary 删除用户
-  // * @description
-  // * @router delete /v1/admin/users/{id}
-  // * @request path integer id 用户id
-  // * @request header string authorization token
-  // */
-  // async destroy() {
-  //   const { ctx } = this;
-  //   const id = ctx.params.id;
-  //   await ctx.service.user.destroy(id);
-  //   ctx.helper.success(ctx, {}, ctx.NOT_FOUND_CODE);
-  // }
 }
 
 module.exports = UsersController;

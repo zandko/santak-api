@@ -27,7 +27,7 @@ class CardsController extends Controller {
   */
   async show() {
     const { ctx } = this;
-    const id = ctx.params.id;
+    const { id } = ctx.params;
     const card = await ctx.service.card.show(id);
     if (!card) return ctx.helper.notFound(ctx);
     ctx.helper.success(ctx, card);
@@ -42,7 +42,7 @@ class CardsController extends Controller {
  */
   async create() {
     const { ctx } = this;
-    const card = await ctx.service.card.create(ctx.request.body);
+    const card = await ctx.service.card.create(ctx.params);
     ctx.helper.success(ctx, card, ctx.CREATED_CODE);
   }
 
@@ -56,8 +56,9 @@ class CardsController extends Controller {
   */
   async update() {
     const { ctx } = this;
-    const id = ctx.params.id;
-    await ctx.service.card.update(ctx.request.body, id);
+    const { id } = ctx.params;
+    const card = await ctx.service.card.update(ctx.params, id);
+    if (!card) return ctx.helper.notFound(ctx);
     ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
   }
 
@@ -70,9 +71,10 @@ class CardsController extends Controller {
   */
   async destroy() {
     const { ctx } = this;
-    const id = ctx.params.id;
-    await ctx.service.card.destroy(id);
-    ctx.helper.success(ctx, {}, ctx.NOT_FOUND_CODE);
+    const { id } = ctx.params;
+    const card = await ctx.service.card.destroy(id);
+    if (!card) return ctx.helper.notFound(ctx);
+    ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
   }
 }
 

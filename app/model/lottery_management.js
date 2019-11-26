@@ -1,4 +1,3 @@
-'use strict';
 /* indent size: 2 */
 
 module.exports = app => {
@@ -9,73 +8,73 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     lottery_name: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      allowNull: false
     },
     share_title: {
       type: DataTypes.STRING(50),
-      allowNull: true,
+      allowNull: true
     },
     share_icon: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     share_intro: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     online_start_date: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: false
     },
     online_end_date: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: false
     },
     start_date: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: false
     },
     stop_date: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: false
     },
     lottery_type: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: '1',
+      defaultValue: '1'
     },
     lottery_num: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: false
     },
     status: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: '1',
+      defaultValue: '1'
     },
     created_at: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: false
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: false
     },
     deleted_at: {
       type: DataTypes.DATE,
-      allowNull: false,
-    },
+      allowNull: true
+    }
   }, {
-    tableName: 'lottery_management',
+    tableName: 'lottery_management'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

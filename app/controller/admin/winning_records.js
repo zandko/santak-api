@@ -32,48 +32,6 @@ class WinningRecordsController extends Controller {
     if (!winningRecord) return ctx.helper.notFound(ctx);
     ctx.helper.success(ctx, winningRecord);
   }
-
-  //   /**
-  //  * @summary 添加记录
-  //  * @description
-  //  * @router post /v1/admin/winningRecords
-  //  * @request header string authorization token
-  //  * @request body createPrizeRequest *body
-  //  */
-  //   async create() {
-  //     const { ctx } = this;
-  //     const winningRecord = await ctx.service.winningRecord.create(ctx.request.body);
-  //     ctx.helper.success(ctx, winningRecord, ctx.CREATED_CODE);
-  //   }
-
-  //   /**
-  //   * @summary 修改记录
-  //   * @description
-  //   * @router put /v1/admin/winningRecords/{id}
-  //   * @request path integer id 记录id
-  //   * @request header string authorization token
-  //  *  @request body createPrizeRequest *body
-  //   */
-  //   async update() {
-  //     const { ctx } = this;
-  //     const id = ctx.params.id;
-  //     await ctx.service.winningRecord.update(ctx.request.body, id);
-  //     ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
-  //   }
-
-  // /**
-  // * @summary 删除记录
-  // * @description
-  // * @router delete /v1/admin/winningRecords/{id}
-  // * @request path integer id 记录id
-  // * @request header string authorization token
-  // */
-  // async destroy() {
-  //   const { ctx } = this;
-  //   const id = ctx.params.id;
-  //   await ctx.service.winningRecord.destroy(id);
-  //   ctx.helper.success(ctx, {}, ctx.NOT_FOUND_CODE);
-  // }
 }
 
 module.exports = WinningRecordsController;

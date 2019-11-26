@@ -52,7 +52,7 @@ module.exports = {
 
   // 获取排序条件数组
   getSortInfo(sort) {
-    return _.isEmpty(sort) ? [[ 'createdTime', 'DESC' ]] : sort;
+    return _.isEmpty(sort) ? [[ 'created_at', 'DESC' ]] : sort;
   },
 
   // 事务

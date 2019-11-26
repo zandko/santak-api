@@ -1,4 +1,3 @@
-'use strict';
 /* indent size: 2 */
 
 module.exports = app => {
@@ -53,7 +52,7 @@ module.exports = app => {
     },
     deleted_at: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
   }, {
     tableName: 'card',

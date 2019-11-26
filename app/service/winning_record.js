@@ -14,24 +14,6 @@ class WinningRecordService extends Service {
     const card = await app.model.WinningRecord.findByPk(id);
     return card;
   }
-
-  async create(data) {
-    const { app } = this;
-    const card = await app.model.WinningRecord.create(data);
-    return card;
-  }
-
-  async update(data, id) {
-    const { app } = this;
-    const card = await app.model.WinningRecord.findByPk(id);
-    await card.update(data);
-  }
-
-  async destroy(id) {
-    const { app } = this;
-    const card = await app.model.WinningRecord.findByPk(id);
-    await card.destroy();
-  }
 }
 
 module.exports = WinningRecordService;

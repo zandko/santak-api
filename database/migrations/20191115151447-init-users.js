@@ -35,6 +35,12 @@ module.exports = {
         defaultValue: NOW,
         comment: '创建时间',
       },
+      updated_at: {
+        type: DATE,
+        allowNull: false,
+        defaultValue: NOW,
+        comment: '更新时间',
+      },
     }, {
       comment: '用户表',
     });

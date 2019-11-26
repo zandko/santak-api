@@ -1,4 +1,3 @@
-'use strict';
 /* indent size: 2 */
 
 module.exports = app => {
@@ -9,31 +8,35 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     lottery_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: false
     },
     user_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: false
     },
     card_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: false
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: false
     },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false
+    }
   }, {
-    tableName: 'lottery_log',
+    tableName: 'lottery_log'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

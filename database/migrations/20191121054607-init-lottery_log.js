@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const { INTEGER, DATE } = Sequelize;
+    const { INTEGER, DATE, NOW } = Sequelize;
 
     await queryInterface.createTable('lottery_log', {
       id: {
@@ -29,7 +29,14 @@ module.exports = {
       created_at: {
         type: DATE,
         allowNull: false,
+        defaultValue: NOW,
         comment: '创建时间',
+      },
+      updated_at: {
+        type: DATE,
+        allowNull: false,
+        defaultValue: NOW,
+        comment: '更新时间',
       },
     }, {
       comment: '抽奖记录表',

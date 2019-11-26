@@ -1,4 +1,3 @@
-'use strict';
 /* indent size: 2 */
 
 module.exports = app => {
@@ -9,36 +8,40 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     nick_name: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     phone: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     open_id: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: false
     },
     lottery_num: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: '5',
+      defaultValue: '5'
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: false
     },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false
+    }
   }, {
-    tableName: 'users',
+    tableName: 'users'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

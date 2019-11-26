@@ -1,4 +1,3 @@
-'use strict';
 /* indent size: 2 */
 
 module.exports = app => {
@@ -9,63 +8,67 @@ module.exports = app => {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     prize_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: false
     },
     user_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: false
     },
     lottery_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: false
     },
     prize_name: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: false
     },
     user_name: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: false
     },
     user_realname: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     user_mobile: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     user_address: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: true
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: false
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false
     },
     field1: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: false
     },
     field2: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: false
     },
     field3: {
       type: DataTypes.STRING(255),
-      allowNull: false,
-    },
+      allowNull: false
+    }
   }, {
-    tableName: 'winning_record',
+    tableName: 'winning_record'
   });
 
   Model.associate = function() {
 
-  };
+  }
 
   return Model;
 };

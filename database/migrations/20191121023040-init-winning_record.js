@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const { INTEGER, STRING, DATE } = Sequelize;
+    const { INTEGER, STRING, DATE, NOW } = Sequelize;
 
     await queryInterface.createTable('winning_record', {
       id: {
@@ -51,7 +51,14 @@ module.exports = {
       created_at: {
         type: DATE,
         allowNull: false,
-        comment: '中奖时间',
+        defaultValue: NOW,
+        comment: '创建时间',
+      },
+      updated_at: {
+        type: DATE,
+        allowNull: false,
+        defaultValue: NOW,
+        comment: '更新时间',
       },
       field1: {
         type: STRING,

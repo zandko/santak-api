@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const { INTEGER, STRING, DATE } = Sequelize;
+    const { INTEGER, STRING, DATE, NOW } = Sequelize;
 
     await queryInterface.createTable('lottery_management', {
       id: {
@@ -14,7 +14,7 @@ module.exports = {
       lottery_name: {
         type: STRING(50),
         allowNull: false,
-        comment: '活动名称',
+        comment: '名称',
       },
       share_title: {
         type: STRING(50),
@@ -31,28 +31,28 @@ module.exports = {
       online_start_date: {
         type: DATE,
         allowNull: false,
-        comment: '活动上线时间',
+        comment: '上线时间',
       },
       online_end_date: {
         type: DATE,
         allowNull: false,
-        comment: '活动下线时间',
+        comment: '下线时间',
       },
       start_date: {
         type: DATE,
         allowNull: false,
-        comment: '活动开始时间',
+        comment: '开始时间',
       },
       stop_date: {
         type: DATE,
         allowNull: false,
-        comment: '活动结束时间',
+        comment: '结束时间',
       },
       lottery_type: {
         type: INTEGER,
         allowNull: false,
         defaultValue: 1,
-        comment: '活动类型(1集卡,2抽奖)',
+        comment: '类型: 1集卡,2抽奖',
       },
       lottery_num: {
         type: INTEGER,
@@ -63,21 +63,22 @@ module.exports = {
         type: INTEGER,
         allowNull: false,
         defaultValue: 1,
-        comment: '状态 1：正常  0：删除',
+        comment: '状态: 1正常,0删除',
       },
       created_at: {
         type: INTEGER,
         allowNull: false,
+        defaultValue: NOW,
         comment: '创建时间',
       },
       updated_at: {
         type: DATE,
         allowNull: false,
+        defaultValue: NOW,
         comment: '更新时间',
       },
       deleted_at: {
         type: DATE,
-        allowNull: false,
         comment: '删除时间',
       },
     }, {

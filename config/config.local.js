@@ -12,21 +12,21 @@ exports.sequelize = {
   password: 'mm123321', // 数据库登陆密码
   timezone: '+08:00', // 保存为本地时区
   define: {
-    createdAt: 'createdTime',
-    updatedAt: 'lastModifiedTime',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
     freezeTableName: true, // 阻止数据表名变为复数
-    timestamps: false, // 阻止model生成createAt和updateAt字段,
+    timestamps: true,
     getterMethods: {
-      createdTime() {
-        const createdTime = this.getDataValue('createdTime');
-        if (createdTime) {
-          return fecha.format(createdTime, 'YYYY-MM-DD HH:mm:ss');
+      created_at() {
+        const created_at = this.getDataValue('created_at');
+        if (created_at) {
+          return fecha.format(created_at, 'YYYY-MM-DD HH:mm:ss');
         }
       },
-      lastModifiedTime() {
-        const lastModifiedTime = this.getDataValue('lastModifiedTime');
-        if (lastModifiedTime) {
-          return fecha.format(lastModifiedTime, 'YYYY-MM-DD HH:mm:ss');
+      updated_at() {
+        const updated_at = this.getDataValue('updated_at');
+        if (updated_at) {
+          return fecha.format(updated_at, 'YYYY-MM-DD HH:mm:ss');
         }
       },
     },
