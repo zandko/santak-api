@@ -39,8 +39,9 @@ module.exports = app => {
 
 
   /* =================== Utils Start ================================= */
-  router.post('/v1/upload', utils.upload.upload);
+  router.post('/uploader', utils.qiniu.uploader);
   /* =================== Utils Stop ================================= */
+
   // swagger
   router.redirect('/', '/swagger-ui.html', 302); // 重定向到swagger-ui.html
 };

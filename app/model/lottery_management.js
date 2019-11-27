@@ -57,7 +57,7 @@ module.exports = app => {
       defaultValue: '1'
     },
     created_at: {
-      type: DataTypes.INTEGER(11),
+      type: DataTypes.DATE,
       allowNull: false
     },
     updated_at: {

@@ -26,6 +26,10 @@ module.exports = appInfo => {
     match: '/v1/',
   };
 
+  config.multipart = {
+    mode: 'file',
+  };
+
   config.error = {
     // 这里使用appInfo.env来判断环境，仅仅在非生产环境下打开堆栈信息，用于调试
     postFormat: (e, { stack, ...rest }) => (appInfo.env === 'prod' ? rest : { stack, ...rest }),

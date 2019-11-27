@@ -75,7 +75,7 @@ class PrizesController extends Controller {
     const { id } = ctx.params;
     const prize = await ctx.service.prize.destroy(id);
     if (!prize) return ctx.helper.notFound(ctx);
-    ctx.helper.success(ctx, {}, ctx.NOT_FOUND_CODE);
+    ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
   }
 }
 

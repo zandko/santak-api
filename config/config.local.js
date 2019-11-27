@@ -47,3 +47,10 @@ exports.wxconfig = {
   APP_ID: 'wx7425acfdb271ef9a',
   APP_SECRET: 'f1091d2b50f223f1fd394276d84e9fd7',
 };
+
+exports.qiniu = {
+  AccessKey: 'FgXzSBikhWJdaPbOLF3A8iUmMS6vkVzAYV3uY81v',
+  SecretKey: 'vb3rgr4AxEQXYnoEQBLhsjoBuKhJwMlb_TYeTLBx',
+  Bucket: 'egg-lottery',
+  Domain: 'q1lzhixqp.bkt.clouddn.com',
+};

@@ -66,7 +66,7 @@ module.exports = {
         comment: '状态: 1正常,0删除',
       },
       created_at: {
-        type: INTEGER,
+        type: DATE,
         allowNull: false,
         defaultValue: NOW,
         comment: '创建时间',

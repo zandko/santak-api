@@ -4,7 +4,7 @@
 docker-compose stop || true;
 docker-compose down || true;
 
-# docker rmi --force $(docker images | grep nodejs | awk '{print $3}')
+docker rmi nodejs
 
 docker-compose build;
 

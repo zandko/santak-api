@@ -43,7 +43,7 @@ class LotteryManagementsController extends Controller {
  */
   async create() {
     const { ctx } = this;
-    const lotteryManagement = await ctx.service.lotteryManagement.create(ctx.request.body);
+    const lotteryManagement = await ctx.service.lotteryManagement.create(ctx.params);
     ctx.helper.success(ctx, lotteryManagement, ctx.CREATED_CODE);
   }
 
@@ -73,7 +73,7 @@ class LotteryManagementsController extends Controller {
     const { ctx } = this;
     const id = ctx.params.id;
     await ctx.service.lotteryManagement.destroy(id);
-    ctx.helper.success(ctx, {}, ctx.NOT_FOUND_CODE);
+    ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
   }
 }
 

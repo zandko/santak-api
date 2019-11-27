@@ -4,8 +4,8 @@ const Service = require('egg').Service;
 
 class PrizeService extends Service {
   constructor(ctx) {
-    super(ctx); // 调用父对象上的函数
-    this.database = this.ctx.model.Prize; // 根据表名获得相应的数据模型
+    super(ctx);
+    this.database = this.ctx.model.Prize;
   }
 
   async index(query) {

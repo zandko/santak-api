@@ -42,21 +42,23 @@ class LotteryManagementDeploysController extends Controller {
  * @request body createLotteryManagementDeployRequest *body
  */
   async create() {
-    // const { ctx } = this;
-    // const { prize_list, card_list } = ctx.params;
+    const { ctx } = this;
+    const { prize_list } = ctx.params;
+    const prizeList = ctx.helper.JSONParse(prize_list);
 
-    // const prizeList = ctx.helper.JSONParse(prize_list);
-    // const cardList = ctx.helper.JSONParse(card_list);
-    // console.log(prizeList, cardList);
+    let prize_total_num = 0;
+    let prize_num = 0;
 
-    // const prizeList = ctx.helper.JSONParse(prize_list);
-    // console.log(typeof prizeList, prizeList, typeof prize_list, JSON.stringify(prize_list));
-    // return ctx.helper.success(ctx, {
-    //   prize_list,
-    //   card_list,
-    // }, ctx.CREATED_CODE);
-    // const lotteryManagementDeploy = await ctx.service.lotteryManagementDeploy.create(ctx.params);
-    // ctx.helper.success(ctx, lotteryManagementDeploy, ctx.CREATED_CODE);
+    for (let i = 0; i < prizeList.length; i++) {
+      prize_total_num += prizeList[i].num;
+      prize_num += prizeList[i].num;
+    }
+
+    ctx.params.prize_total_num = prize_total_num;
+    ctx.params.prize_num = prize_num;
+
+    const lotteryManagementDeploy = await ctx.service.lotteryManagementDeploy.create(ctx.params);
+    ctx.helper.success(ctx, lotteryManagementDeploy, ctx.CREATED_CODE);
   }
 
   /**
@@ -69,7 +71,20 @@ class LotteryManagementDeploysController extends Controller {
   */
   async update() {
     const { ctx } = this;
-    const { id } = ctx.params;
+    const { id, prize_list } = ctx.params;
+    const prizeList = ctx.helper.JSONParse(prize_list);
+
+    let prize_total_num = 0;
+    let prize_num = 0;
+
+    for (let i = 0; i < prizeList.length; i++) {
+      prize_total_num += prizeList[i].num;
+      prize_num += prizeList[i].num;
+    }
+
+    ctx.params.prize_total_num = prize_total_num;
+    ctx.params.prize_num = prize_num;
+
     const lotteryManagementDeploy = await ctx.service.lotteryManagementDeploy.update(ctx.params, id);
     if (!lotteryManagementDeploy) return ctx.helper.notFound(ctx);
     ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
@@ -87,7 +102,7 @@ class LotteryManagementDeploysController extends Controller {
     const { id } = ctx.params;
     const lotteryManagementDeploy = await ctx.service.lotteryManagementDeploy.destroy(id);
     if (!lotteryManagementDeploy) return ctx.helper.notFound(ctx);
-    ctx.helper.success(ctx, {}, ctx.NOT_FOUND_CODE);
+    ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
   }
 }
 

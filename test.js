@@ -1,32 +1,32 @@
 'use strict';
 
-const arr = [
-  {
-    id: 1,
-    magnification: 20,
-    name: '测试1',
-  },
-  {
-    id: 2,
-    magnification: 10,
-    name: '测试2',
-  },
-  {
-    id: 3,
-    magnification: 30,
-    name: '测试3',
-  },
-  {
-    id: 4,
-    magnification: 1,
-    name: '测试4',
-  },
-  {
-    id: 5,
-    magnification: 39,
-    name: '测试5',
-  },
-];
+// const arr = [
+//   {
+//     id: 1,
+//     magnification: 20,
+//     name: '测试1',
+//   },
+//   {
+//     id: 2,
+//     magnification: 10,
+//     name: '测试2',
+//   },
+//   {
+//     id: 3,
+//     magnification: 30,
+//     name: '测试3',
+//   },
+//   {
+//     id: 4,
+//     magnification: 1,
+//     name: '测试4',
+//   },
+//   {
+//     id: 5,
+//     magnification: 39,
+//     name: '测试5',
+//   },
+// ];
 
 // 0 ~ 1 * 100 + 1
 // 100 - 20 = 80
@@ -43,25 +43,25 @@ const arr = [
 // 0 ~ 1 * 1 + 1
 // 39 - 39 = 0
 
-function getRand(arr) {
-  const result = 0;
-  let sum = 0;
-  arr.forEach(val => {
-    sum += val.magnification;
-  });
+// function getRand(arr) {
+//   const result = 0;
+//   let sum = 0;
+//   arr.forEach(val => {
+//     sum += val.magnification;
+//   });
 
-  for (const index in arr) {
-    const rand = Math.round(Math.random() * (sum - 1) + 1);
-    console.log('rand===========' + rand);
-    if (rand <= arr[index].magnification) {
-      return arr[index];
-    }
-    sum -= arr[index].magnification;
-    console.log('sum============' + sum);
-  }
+//   for (const index in arr) {
+//     const rand = Math.round(Math.random() * (sum - 1) + 1);
+//     console.log('rand===========' + rand);
+//     if (rand <= arr[index].magnification) {
+//       return arr[index];
+//     }
+//     sum -= arr[index].magnification;
+//     console.log('sum============' + sum);
+//   }
 
-  return result;
-}
+//   return result;
+// }
 // console.log(getRand(arr));
 
 // console.log(new Date() < 1574175120);
@@ -97,5 +97,11 @@ function getRand(arr) {
 // const str = '123';
 // console.log(str.indexOf('1') !== -1);
 
-const result = {};
-console.log(result === 1);
+// const result = {};
+// console.log(result === 1);
+
+const json = '[{"prize_id":1,"num":1},{"prize_id":2,"num":1}]';
+
+const jsonparse = JSON.parse(json);
+console.log(jsonparse[0].prize_id);
+
