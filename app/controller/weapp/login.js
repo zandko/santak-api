@@ -23,8 +23,8 @@ class LoginController extends Controller {
 
     const { openid: open_id, session_key } = weappInfo.data || {};
     if (open_id) {
-      const user = await ctx.service.user.index({ where: { open_id } });
-      if (!user) await ctx.service.user.create({ open_id, session_key });
+      const user = await ctx.service.user.index({ open_id });
+      if (!user.length) await ctx.service.user.create({ open_id });
       const result = JSON.stringify({ open_id, session_key });
       await ctx.service.redis.set(uuid, result, 3600 * 24);
     } else {

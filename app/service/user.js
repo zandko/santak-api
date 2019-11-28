@@ -3,16 +3,47 @@
 const Service = require('egg').Service;
 
 class UserService extends Service {
-  async index(obj) {
-    const { app } = this;
-    const cards = await app.model.User.findAll(obj);
-    return cards;
+  constructor(ctx) {
+    super(ctx);
+    this.database = ctx.model.Users;
+  }
+  async index(query) {
+    try {
+      return await this.database.findAll({
+        where: query,
+      });
+    } catch (error) {
+      throw (error);
+    }
   }
 
   async show(id) {
-    const { app } = this;
-    const card = await app.model.User.findByPk(id);
-    return card;
+    try {
+      return await this.database.findByPk(id);
+    } catch (error) {
+      throw (error);
+    }
+
+  }
+
+  async create(data) {
+    try {
+      return await this.database.create(data);
+    } catch (error) {
+      throw (error);
+    }
+  }
+
+  async increaseLotteryNum() {
+    try {
+      const users = this.database.findAll();
+      for (let index = 0; index < users.length; index++) {
+        users[index].update({ lottery_num: users[index].lottery_num + 5 });
+      }
+      return users;
+    } catch (error) {
+      throw (error);
+    }
   }
 }
 

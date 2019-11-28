@@ -5,7 +5,7 @@ const Service = require('egg').Service;
 class PrizeService extends Service {
   constructor(ctx) {
     super(ctx);
-    this.database = this.ctx.model.Prize;
+    this.database = ctx.model.Prize;
   }
 
   async index(query) {

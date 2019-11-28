@@ -5,7 +5,7 @@ const Service = require('egg').Service;
 class LotteryManagementDeployService extends Service {
   constructor(ctx) {
     super(ctx);
-    this.database = this.ctx.model.LotteryManagementDeploy;
+    this.database = ctx.model.LotteryManagementDeploy;
   }
   async index(query) {
     const { app } = this;

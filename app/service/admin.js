@@ -5,16 +5,25 @@ const Service = require('egg').Service;
 class AdminService extends Service {
   constructor(ctx) {
     super(ctx);
-    this.datebase = this.ctx.model.Admin;
+    this.datebase = ctx.model.Admin;
   }
-  async index(obj) {
-    const cards = await this.datebase.findAll(obj);
-    return cards;
+
+  async index(query) {
+    try {
+      return await this.datebase.findAll({
+        where: query,
+      });
+    } catch (error) {
+      throw (error);
+    }
   }
 
   async show(id) {
-    const card = await this.datebase.findByPk(id);
-    return card;
+    try {
+      return await this.datebase.findByPk(id);
+    } catch (error) {
+      throw (error);
+    }
   }
 }
 

@@ -3,34 +3,49 @@
 const Service = require('egg').Service;
 
 class LotteryManagementService extends Service {
-  async index(obj) {
+  constructor(ctx) {
+    super(ctx);
+    this.database = ctx.model.LotteryManagement;
+  }
+
+  async index(query) {
     const { app } = this;
-    const cards = await app.model.LotteryManagement.findAll(obj);
-    return cards;
+    try {
+      return await this.database.findAll({
+        where: query,
+        order: app.getSortInfo(),
+      });
+    } catch (error) {
+      throw (error);
+    }
   }
 
   async show(id) {
-    const { app } = this;
-    const card = await app.model.LotteryManagement.findByPk(id);
-    return card;
+    try {
+      return await this.database.findByPk(id);
+    } catch (error) {
+      throw (error);
+    }
   }
 
   async create(data) {
-    const { app } = this;
-    const card = await app.model.LotteryManagement.create(data);
-    return card;
+    try {
+      return await this.database.create(data);
+    } catch (error) {
+      throw (error);
+    }
   }
 
   async update(data, id) {
-    const { app } = this;
-    const card = await app.model.LotteryManagement.findByPk(id);
-    await card.update(data);
+    const lotteryManagement = await this.database.findByPk(id);
+    if (!lotteryManagement) return lotteryManagement;
+    return await lotteryManagement.update(data);
   }
 
   async destroy(id) {
-    const { app } = this;
-    const card = await app.model.LotteryManagement.findByPk(id);
-    await card.destroy();
+    const lotteryManagement = await this.database.findByPk(id);
+    if (!lotteryManagement) return lotteryManagement;
+    return await lotteryManagement.destroy();
   }
 }
 

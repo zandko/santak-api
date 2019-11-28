@@ -58,7 +58,8 @@ class LotteryManagementsController extends Controller {
   async update() {
     const { ctx } = this;
     const id = ctx.params.id;
-    await ctx.service.lotteryManagement.update(ctx.request.body, id);
+    const lotteryManagement = await ctx.service.lotteryManagement.update(ctx.request.body, id);
+    if (!lotteryManagement) return ctx.helper.notFound(ctx);
     ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
   }
 
@@ -72,7 +73,8 @@ class LotteryManagementsController extends Controller {
   async destroy() {
     const { ctx } = this;
     const id = ctx.params.id;
-    await ctx.service.lotteryManagement.destroy(id);
+    const lotteryManagement = await ctx.service.lotteryManagement.destroy(id);
+    if (!lotteryManagement) return ctx.helper.notFound(ctx);
     ctx.helper.success(ctx, {}, ctx.NO_CONTENT_CODE);
   }
 }
