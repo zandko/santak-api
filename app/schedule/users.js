@@ -4,16 +4,13 @@
 module.exports = () => {
   return {
     schedule: {
-      // cron: '0 0 2 * * ?', // 每日2点执行
-      interval: '10s',
+      cron: '0 0 * * *', // 每日0点执行
       type: 'all',
       immediate: false,
-      disable: true,
+      disable: false,
     },
     async task(ctx) {
-      const { user } = ctx.service;
-      console.log('user.increaseLotteryNum()， 时间点： ' + new Date().getTime());
-      await user.increaseLotteryNum();
+      await ctx.service.user.increaseLotteryNum();
     },
   };
 };

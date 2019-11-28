@@ -36,11 +36,10 @@ class UserService extends Service {
 
   async increaseLotteryNum() {
     try {
-      const users = this.database.findAll();
+      const users = await this.database.findAll();
       for (let index = 0; index < users.length; index++) {
         users[index].update({ lottery_num: users[index].lottery_num + 5 });
       }
-      return users;
     } catch (error) {
       throw (error);
     }
