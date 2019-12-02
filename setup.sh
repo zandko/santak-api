@@ -4,10 +4,12 @@
 docker-compose stop || true;
 docker-compose down || true;
 
-docker rmi nodejs
+# docker rmi nodejs
 
 docker-compose build;
 
 docker-compose up -d;
 
 docker logs nodejs;
+
+docker system prune -a -f;

@@ -28,10 +28,7 @@ module.exports = () => {
       if (valid.verify || ignorePaths.includes(ctx.path)) {
         await next();
       } else {
-        ctx.helper.fail(ctx, ctx.UNAUTHORIZED_CODE, {
-          message: valid.message,
-          expiredAt: valid.expiredAt,
-        });
+        ctx.helper.fail(ctx, ctx.UNAUTHORIZED_CODE, valid.message);
       }
     }
   };
