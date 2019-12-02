@@ -16,6 +16,7 @@ class LoginController extends Controller {
     const { ctx } = this;
     const { username, password } = ctx.request.body;
 
+    console.log(username, password);
     const result = await ctx.service.admin.index({
       username,
       password: await ctx.helper.md5(password),
