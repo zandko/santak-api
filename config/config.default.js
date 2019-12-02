@@ -52,7 +52,7 @@ module.exports = appInfo => {
       enable: false,
       ignoreJSON: true,
     },
-    domainWhiteList: [ 'http://127.0.0.1:9000' ],
+    domainWhiteList: [ 'http://127.0.0.1:9000', 'http://localhost:9000' ],
   };
 
   config.cors = {
