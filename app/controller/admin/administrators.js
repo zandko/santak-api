@@ -16,9 +16,13 @@ class AdministratorsController extends Controller {
     const { ctx } = this;
     const verifuResult = await ctx.verifyToken(ctx.request.header.authorization);
     if (verifuResult.verify) {
-      const { id } = ctx.helper.JSONParse(verifuResult.message.data)[0];
-      const user = await ctx.service.admin.show(id);
-      return ctx.helper.success(ctx, user);
+      const result = ctx.helper.JSONParse(verifuResult.message.data)[0];
+      if (result) {
+        const { id } = result;
+        const user = await ctx.service.admin.show(id);
+        return ctx.helper.success(ctx, user);
+      }
+      return ctx.helper.fail(ctx, ctx.UNAUTHORIZED_CODE, 'token无效，请重新登陆！');
     }
     ctx.helper.fail(ctx, ctx.UNAUTHORIZED_CODE, {
       message: verifuResult.message,
