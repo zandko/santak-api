@@ -7,7 +7,7 @@ module.exports = () => {
   return async function auth(ctx, next) {
     if (ctx.path.indexOf('/weapp/') !== -1) {
       // 微信小程序接口
-      const uuid = ctx.request.header.Authorization;
+      const uuid = ctx.request.header.authorization;
       const cache = ctx.helper.JSONParse(await ctx.service.redis.get(uuid)) || {};
 
       const { open_id: openId } = cache;
@@ -23,7 +23,7 @@ module.exports = () => {
     } else {
       // 管理端接口
       const ignorePaths = [ '/v1/admin/login' ];
-      const token = ctx.request.header.Authorization;
+      const token = ctx.request.header.authorization;
       const valid = await ctx.verifyToken(token);
       if (valid.verify || ignorePaths.includes(ctx.path)) {
         await next();
